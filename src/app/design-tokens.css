@@ -1,0 +1,29 @@
+:root {
+  /* Classic Palette - Timeless and Elegant */
+  /* Colonial / Mexican Ranch Palette */
+  --terracotta-primary: #9C3931;
+  /* Deep brick red / terracotta */
+  --cream-hacienda: #FAF8F2;
+  /* Warm off-white / lime wash */
+  --gold-antique: #C5A059;
+  /* Aged metal / gold */
+  --wood-charcoal: #3E2723;
+  /* Dark wood / coffee */
+  --agave-green: #5D7246; 
+  /* Muted nature green */
+
+  --primary: var(--terracotta-primary);
+  --secondary: var(--gold-antique);
+  --accent: var(--agave-green);
+  --background: var(--cream-hacienda);
+  --foreground: var(--wood-charcoal);
+
+  /* Fonts */
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Inter", sans-serif;
+}
+
+.dark {
+  --background: #020617;
+  --foreground: #f8fafc;
+}
