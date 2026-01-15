@@ -133,7 +133,7 @@ export function Navbar() {
                   className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-[#3e2723]"
                 >
                   <Globe className="w-5 h-5" />
-                  {language === 'es' ? 'English' : 'Español'}
+                  {language === 'es' ? t('nav.lang_en') : t('nav.lang_es')}
                 </button>
 
                 <a

@@ -4,12 +4,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
-// Placeholder images - will need to be updated with real paths
-const amenities = [
+const amenitiesData = [
     {
-        title: "Bienestar y Relax",
-        items: ["Jacuzzi Climatizado", "Turco"],
+        titleKey: "exp.cat.wellness",
+        itemsKeys: ["exp.item.jacuzzi", "exp.item.steam"],
         images: [
             "/imagenes/zonas humedas/jacuzzi_1.webp",
             "/imagenes/zonas humedas/turco_1.webp"
@@ -18,8 +18,8 @@ const amenities = [
         rowSpan: "md:row-span-1",
     },
     {
-        title: "Eventos & Auditorio",
-        items: ["Auditorio", "Salón Social", "Espacios para Eventos"],
+        titleKey: "exp.cat.events",
+        itemsKeys: ["exp.item.auditorium", "exp.item.social", "exp.item.event_spaces"],
         images: [
             "/imagenes/auditorio/vertical/auditorio_1.webp",
             "/imagenes/auditorio/vertical/auditorio_2.webp",
@@ -29,19 +29,18 @@ const amenities = [
         rowSpan: "md:row-span-1",
     },
     {
-        title: "Deportes y Diversión",
-        items: ["Fútbol", "Voleibol", "Billar Pool", "Ping Pong"],
+        titleKey: "exp.cat.sports",
+        itemsKeys: ["exp.item.soccer", "exp.item.volleyball", "exp.item.pool_table", "exp.item.ping_pong"],
         images: [
             "/imagenes/billar/horizontales/billar_1.webp",
-            "/imagenes/billar/horizontales/billar_2.webp",
             "/imagenes/zonas verdes/horizontales/zonas_verdes_28.webp"
         ],
         colSpan: "md:col-span-1",
         rowSpan: "md:row-span-1",
     },
     {
-        title: "Diversión Infantil",
-        items: ["Parque Infantil", "Juegos"],
+        titleKey: "exp.cat.kids",
+        itemsKeys: ["exp.item.playground", "exp.item.games"],
         images: [
             "/imagenes/zonas verdes/horizontales/zonas_verdes_29.webp",
             "/imagenes/zonas verdes/horizontales/zonas_verdes_10.webp",
@@ -51,8 +50,8 @@ const amenities = [
         rowSpan: "md:row-span-1",
     },
     {
-        title: "Fogata & Picnic",
-        items: ["Fogata", "Picnic Nocturno"],
+        titleKey: "exp.cat.firepit",
+        itemsKeys: ["exp.item.firepit", "exp.item.picnic"],
         images: [
             "/imagenes/fogata/vertical/fogata_1.webp",
             "/imagenes/fogata/vertical/fogata_2.webp",
@@ -63,7 +62,8 @@ const amenities = [
     }
 ];
 
-function ExperienceCard({ item, idx }: { item: typeof amenities[0], idx: number }) {
+function ExperienceCard({ item, idx }: { item: typeof amenitiesData[0], idx: number }) {
+    const { t } = useLanguage();
     const [currentImg, setCurrentImg] = useState(0);
 
     const nextImg = (e: React.MouseEvent) => {
@@ -103,7 +103,7 @@ function ExperienceCard({ item, idx }: { item: typeof amenities[0], idx: number 
                 >
                     <Image
                         src={item.images[currentImg]}
-                        alt={item.title}
+                        alt={t(item.titleKey)}
                         fill
                         className="object-cover pointer-events-none"
                         priority={idx === 0}
@@ -141,11 +141,11 @@ function ExperienceCard({ item, idx }: { item: typeof amenities[0], idx: number 
             </div>
 
             <div className="absolute bottom-0 left-0 p-8 w-full pointer-events-none">
-                <h3 className="text-2xl font-serif text-white mb-3 tracking-wide">{item.title}</h3>
+                <h3 className="text-2xl font-serif text-white mb-3 tracking-wide">{t(item.titleKey)}</h3>
                 <div className="flex flex-wrap gap-2">
-                    {item.items.map((sub, i) => (
+                    {item.itemsKeys.map((subKey, i) => (
                         <span key={i} className="text-[10px] uppercase tracking-widest bg-[#C5A059] text-white px-3 py-1 rounded-full font-medium shadow-sm">
-                            {sub}
+                            {t(subKey)}
                         </span>
                     ))}
                 </div>
@@ -155,19 +155,23 @@ function ExperienceCard({ item, idx }: { item: typeof amenities[0], idx: number 
 }
 
 export function ExperienceGrid() {
+    const { t } = useLanguage();
     return (
         <section className="py-24 px-6 bg-[#FAF8F2]" id="experiencias">
             <div className="max-w-7xl mx-auto mb-16 text-center">
                 <span className="text-[#9C3931] font-serif tracking-widest uppercase text-sm mb-4 block">
-                    Actividades
+                    {t('exp.tag')}
                 </span>
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-[#3E2723]">
-                    Experiencias Inolvidables
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-[#3E2723] mb-6">
+                    {t('exp.title')}
                 </h2>
+                <p className="text-[#3E2723]/80 max-w-2xl mx-auto font-serif text-lg">
+                    {t('exp.desc')}
+                </p>
             </div>
 
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 md:grid-rows-2 auto-rows-[400px] md:auto-rows-fr h-auto md:h-[800px]">
-                {amenities.map((item, idx) => (
+                {amenitiesData.map((item, idx) => (
                     <ExperienceCard key={idx} item={item} idx={idx} />
                 ))}
             </div>

@@ -2,20 +2,23 @@
 
 import { motion } from "framer-motion";
 import { Utensils, SprayCan, UserCheck } from "lucide-react"; // Assuming lucide-react is available
+import { useLanguage } from "@/context/LanguageContext";
 
 export function ServiceHighlight() {
+    const { t } = useLanguage();
+
     return (
         <section className="py-20 px-6 bg-[#3E2723] text-[#FAF8F2]">
             <div className="max-w-6xl mx-auto">
                 <div className="text-center mb-16">
                     <span className="text-[#C5A059] tracking-widest uppercase text-sm mb-4 block">
-                        Experiencia Hotelera
+                        {t('service.tag')}
                     </span>
                     <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-white mb-6">
-                        Servicio Personalizado Incluido
+                        {t('service.title')}
                     </h2>
                     <p className="text-white/80 max-w-2xl mx-auto font-serif text-lg">
-                        Olvídese "de todo". Su estancia incluye un equipo dedicado para que solo se preocupe de disfrutar.
+                        {t('service.desc')}
                     </p>
                 </div>
 
@@ -23,20 +26,20 @@ export function ServiceHighlight() {
                     {[
                         {
                             icon: <UserCheck className="w-8 h-8" />,
-                            title: "Camarera y Limpieza",
-                            desc: "Servicio diario de limpieza, tendido de camas y orden para mantener la frescura de la finca.",
+                            title: t('service.1.title'),
+                            desc: t('service.1.desc'),
                             image: "/imagenes/eventos/horizontales/eventos_2.webp"
                         },
                         {
                             icon: <Utensils className="w-8 h-8" />,
-                            title: "Preparación de Alimentos",
-                            desc: "Nuestro personal se encarga de la preparación de sus comidas (desayuno y almuerzo), usted solo trae los ingredientes.",
+                            title: t('service.2.title'),
+                            desc: t('service.2.desc'),
                             image: "/imagenes/comedor/horizontales/comedor_5.webp"
                         },
                         {
                             icon: <SprayCan className="w-8 h-8" />,
-                            title: "Espacios Impecables",
-                            desc: "Mantenimiento constante de zonas húmedas y áreas sociales durante su estancia.",
+                            title: t('service.3.title'),
+                            desc: t('service.3.desc'),
                             image: "/imagenes/habitaciones/horizontales/habitaciones_1.webp"
                         }
                     ].map((service, idx) => (

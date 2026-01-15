@@ -34,10 +34,17 @@ export function Location() {
                     <motion.h2
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        className="text-4xl md:text-5xl lg:text-6xl font-serif text-white mb-8"
+                        className="text-4xl md:text-5xl lg:text-6xl font-serif text-white mb-6"
                     >
                         {t('location.title')}
                     </motion.h2>
+                    <motion.p
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        className="text-white/80 max-w-2xl mx-auto font-serif text-lg mb-8"
+                    >
+                        {t('location.desc')}
+                    </motion.p>
                     <div className="flex items-center justify-center gap-4">
                         <div className="w-12 h-[1px] bg-[#C5A059]/30" />
                         <div className="w-2 h-2 rotate-45 border border-[#C5A059]" />

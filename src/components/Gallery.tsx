@@ -21,9 +21,12 @@ export function Gallery() {
                 <span className="text-[#9C3931] font-serif tracking-widest uppercase text-sm mb-4 block">
                     {t('gallery.tag')}
                 </span>
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-[#3e2723] mb-8">
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-[#3e2723] mb-6">
                     {t('gallery.title')}
                 </h2>
+                <p className="text-[#3e2723]/80 max-w-2xl mx-auto font-serif text-lg">
+                    {t('gallery.desc')}
+                </p>
             </div>
 
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-4 h-auto md:h-[900px] auto-rows-[300px]">

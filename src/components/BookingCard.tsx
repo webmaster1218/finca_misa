@@ -156,12 +156,19 @@ export function BookingCard() {
     };
 
     const formatDateShort = (date: Date) => {
-        return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+        return date.toLocaleDateString(language === 'es' ? 'es-ES' : 'en-US', {
+            day: 'numeric',
+            month: 'short',
+            year: 'numeric'
+        });
     };
 
     const formatDateLong = (date: Date) => {
-        const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'short', year: 'numeric' };
-        return date.toLocaleDateString(language === 'es' ? 'es-ES' : 'en-US', options).replace('.', '');
+        return date.toLocaleDateString(language === 'es' ? 'es-ES' : 'en-US', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        }).replace('.', '');
     };
 
     const handleDateClick = (date: Date) => {
@@ -365,38 +372,37 @@ export function BookingCard() {
                             </div>
 
                             <div className="flex justify-between items-center mt-8 pt-4 border-t border-[#f0f0f0]">
-                                <div className="flex items-center gap-4">
-                                    <div className="flex items-center gap-2">
-                                        <div className="w-4 h-4 rounded-full border border-black" />
-                                        <span className="text-[10px] uppercase font-bold">{language === 'es' ? 'Disponible' : 'Available'}</span>
-                                    </div>
-                                    <div className="flex items-center gap-2">
-                                        <div className="w-4 h-4 rounded-full bg-white border border-[#ebebeb] flex items-center justify-center overflow-hidden">
-                                            <div className="w-full h-[1px] bg-[#ebebeb] rotate-45" />
-                                        </div>
-                                        <span className="text-[10px] uppercase font-bold text-[#717171]">{language === 'es' ? 'Ocupado' : 'Occupied'}</span>
-                                    </div>
+                                <div className="flex items-center gap-1.5">
+                                    <div className="w-4 h-4 rounded-sm border border-[#e0e0e0] bg-white"></div>
+                                    <span className="text-[10px] uppercase font-bold">{t('booking.available')}</span>
                                 </div>
-                                <div className="flex gap-4 items-center">
-                                    <button
-                                        onClick={() => {
-                                            const t = new Date();
-                                            setCheckIn(t);
-                                            const tom = new Date(t);
-                                            tom.setDate(t.getDate() + 1);
-                                            setCheckOut(tom);
-                                        }}
-                                        className="text-sm font-semibold underline"
-                                    >
-                                        {language === 'es' ? 'Borrar fechas' : 'Clear dates'}
-                                    </button>
-                                    <button
-                                        onClick={() => setIsCalendarOpen(false)}
-                                        className="bg-[#222222] text-white px-6 py-2.5 rounded-lg font-bold text-sm hover:bg-black transition-colors"
-                                    >
-                                        {language === 'es' ? 'Cerrar' : 'Close'}
-                                    </button>
+                                <div className="flex items-center gap-1.5">
+                                    <div className="w-4 h-4 rounded-sm border border-[#e0e0e0] bg-[#ebebeb] flex items-center justify-center">
+                                        <div className="w-[1px] h-[14px] bg-[#d5d5d5] rotate-45 absolute" />
+                                    </div>
+                                    <span className="text-[10px] uppercase font-bold text-[#717171]">{t('booking.occupied')}</span>
                                 </div>
+                            </div>
+
+                            <div className="flex justify-between items-center pt-2">
+                                <button
+                                    onClick={() => {
+                                        const t = new Date();
+                                        setCheckIn(t);
+                                        const tom = new Date(t);
+                                        tom.setDate(t.getDate() + 1);
+                                        setCheckOut(tom);
+                                    }}
+                                    className="text-sm font-semibold underline hover:bg-gray-100 px-3 py-2 rounded-lg transition-colors"
+                                >
+                                    {t('booking.clear_dates')}
+                                </button>
+                                <button
+                                    onClick={() => setIsCalendarOpen(false)}
+                                    className="bg-[#222222] text-white px-6 py-2.5 rounded-lg font-bold text-sm hover:bg-black transition-colors"
+                                >
+                                    {t('common.close')}
+                                </button>
                             </div>
                         </motion.div>
                     )}
@@ -423,41 +429,39 @@ export function BookingCard() {
                                 className="absolute top-full left-0 right-0 mt-2 bg-white border border-[#dddddd] rounded-lg shadow-xl z-50 p-4 space-y-4"
                             >
                                 <GuestRow
-                                    label={language === 'es' ? 'Adultos' : 'Adults'}
-                                    sub={language === 'es' ? 'Edad 13 o más' : 'Ages 13 or above'}
+                                    label={t('booking.adults_label') || 'Adultos'}
+                                    sub={t('booking.adults_sub') || '13+'}
                                     count={guestCounts.adults}
                                     onUpdate={(d) => updateCount('adults', d)}
                                     min={1}
                                 />
                                 <GuestRow
-                                    label={language === 'es' ? 'Niños' : 'Children'}
-                                    sub={language === 'es' ? 'De 2 a 12 años' : 'Ages 2-12'}
+                                    label={t('booking.children_label') || 'Niños'}
+                                    sub={t('booking.children_sub') || '2-12'}
                                     count={guestCounts.children}
                                     onUpdate={(d) => updateCount('children', d)}
                                 />
                                 <GuestRow
-                                    label={language === 'es' ? 'Bebés' : 'Infants'}
-                                    sub={language === 'es' ? 'Menos de 2 años' : 'Under 2'}
+                                    label={t('booking.infants_label_row') || 'Bebés'}
+                                    sub={t('booking.infants_sub') || '0-2'}
                                     count={guestCounts.infants}
                                     onUpdate={(d) => updateCount('infants', d)}
                                 />
                                 <GuestRow
-                                    label={language === 'es' ? 'Mascotas' : 'Pets'}
-                                    sub={language === 'es' ? '¿Traes un animal de servicio?' : 'Bringing a service animal?'}
+                                    label={t('booking.pets_label_row') || 'Mascotas'}
+                                    sub={t('booking.pets_sub') || 'Animales'}
                                     count={guestCounts.pets}
                                     onUpdate={(d) => updateCount('pets', d)}
                                 />
                                 <p className="text-[12px] text-[#717171] leading-tight">
-                                    {language === 'es'
-                                        ? 'Este alojamiento tiene una capacidad máxima de 16 huéspedes, sin contar bebés.'
-                                        : 'This home has a maximum capacity of 16 guests, excluding infants.'}
+                                    {t('booking.capacity_note')}
                                 </p>
                                 <div className="flex justify-end pt-2">
                                     <button
                                         onClick={() => setIsGuestOpen(false)}
                                         className="text-sm font-semibold underline hover:bg-gray-100 px-3 py-2 rounded-lg transition-colors"
                                     >
-                                        {language === 'es' ? 'Cerrar' : 'Close'}
+                                        {t('common.close')}
                                     </button>
                                 </div>
                             </motion.div>

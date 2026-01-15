@@ -1,8 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
 
 export function Intro() {
+    const { t } = useLanguage();
+
     return (
         <section id="intro" className="py-24 px-6 bg-[#FAF8F2] relative overflow-hidden">
             {/* Background Texture/Pattern could go here */}
@@ -20,27 +23,26 @@ export function Intro() {
                 >
                     <div className="inline-block border-b border-[#C5A059] pb-2 mb-6">
                         <span className="text-[#9C3931] font-serif tracking-[0.2em] uppercase text-xs font-bold">
-                            Bienvenido a la Experiencia
+                            {t('intro.tag')}
                         </span>
                     </div>
 
                     <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-[#3E2723] mb-8 leading-none">
-                        Villa Grande <br />
-                        <span className="italic text-[#C5A059] text-3xl md:text-4xl lg:text-5xl relative -top-2">La Masía</span>
+                        {t('intro.title1')} <br />
+                        <span className="italic text-[#C5A059] text-3xl md:text-4xl lg:text-5xl relative -top-2">{t('intro.title2')}</span>
                     </h2>
 
                     <p className="text-lg text-[#5D4037] font-serif leading-relaxed mb-10 max-w-xl mx-auto">
-                        Una auténtica casa de campo de estilo colonial, donde cada rincón cuenta una historia.
-                        Decorada con piezas antiguas originales para evocar la calidez de los ranchos mexicanos.
+                        {t('intro.desc')}
                     </p>
 
                     {/* Refined Stats Grid */}
                     <div className="grid grid-cols-2 gap-x-8 md:gap-x-12 gap-y-8 border-t border-[#3E2723]/10 pt-8 max-w-md mx-auto">
                         {[
-                            { label: "Habitaciones", value: "9" },
-                            { label: "Capacidad", value: "15 Personas" },
-                            { label: "Baños", value: "9" },
-                            { label: "Ubicación", value: "Llanogrande" }
+                            { label: t('intro.stat.rooms'), value: "9" },
+                            { label: t('intro.stat.capacity'), value: t('intro.stat.people') },
+                            { label: t('intro.stat.baths'), value: "9" },
+                            { label: t('intro.stat.location'), value: "Llanogrande" }
                         ].map((stat, idx) => (
                             <div key={idx} className="flex flex-col items-center lg:items-center text-center">
                                 <span className="text-3xl md:text-4xl font-serif text-[#9C3931]">{stat.value}</span>

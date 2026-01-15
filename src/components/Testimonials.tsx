@@ -7,21 +7,21 @@ import { useLanguage } from "@/context/LanguageContext";
 const testimonials = [
     {
         name: "Familia Restrepo",
-        location: "Medellín, CO",
+        locationKey: "testimonials.loc.res1",
         textKey: "testimonials.res1.text",
         rating: 5,
         image: "https://images.unsplash.com/photo-1511367461989-f85a21fda167?auto=format&fit=crop&q=80&w=400",
     },
     {
         name: "Andrés Jaramillo",
-        location: "Evento Corporativo",
+        locationKey: "testimonials.loc.res2",
         textKey: "testimonials.res2.text",
         rating: 5,
         image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=400",
     },
     {
         name: "Mariana Velez",
-        location: "Bogotá, CO",
+        locationKey: "testimonials.loc.res3",
         textKey: "testimonials.res3.text",
         rating: 5,
         image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=400",
@@ -98,7 +98,7 @@ export function Testimonials() {
                                         {testi.name}
                                     </h4>
                                     <p className="text-[#C5A059] font-serif text-xs tracking-wide">
-                                        {testi.location}
+                                        {t(testi.locationKey)}
                                     </p>
                                 </div>
                             </div>

@@ -6,6 +6,7 @@ import { ExperienceGrid } from "@/components/ExperienceGrid";
 import { ServiceHighlight } from "@/components/ServiceHighlight";
 import { Location } from "@/components/Location";
 import { Gallery } from "@/components/Gallery";
+import { RoomsShowcase } from "@/components/RoomsShowcase";
 import { Testimonials } from "@/components/Testimonials";
 import { Footer } from "@/components/Footer";
 import { WhatsAppFloating } from "@/components/WhatsAppFloating";
@@ -18,6 +19,7 @@ export default function Home() {
       <Intro />
       <ServiceHighlight />
       <ExperienceGrid />
+      <RoomsShowcase />
       <Rooms />
       <Gallery />
       <Testimonials />

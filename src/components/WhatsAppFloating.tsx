@@ -1,8 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
 
 export function WhatsAppFloating() {
+    const { t } = useLanguage();
+
     return (
         <motion.a
             href="https://wa.me/573004496247"
@@ -13,11 +16,11 @@ export function WhatsAppFloating() {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             className="fixed bottom-8 right-8 z-[100] bg-[#25D366] p-4 rounded-full shadow-2xl flex items-center justify-center group"
-            aria-label="Contactar por WhatsApp"
+            aria-label={t('common.whatsapp_aria')}
         >
             {/* Tooltip */}
             <span className="absolute right-full mr-4 bg-[#3e2723] text-white text-xs py-2 px-4 rounded-none opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap font-serif italic border border-[#9a7d45]/30">
-                ¿Necesitas ayuda?
+                {t('common.help')}
             </span>
 
             <svg

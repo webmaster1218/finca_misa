@@ -22,7 +22,7 @@ export function Footer() {
                             {t('footer.brand_desc')}
                         </p>
                         <div className="flex gap-4">
-                            <a href="#" className="w-10 h-10 border border-[#9a7d45]/30 flex items-center justify-center hover:border-[#9a7d45] hover:bg-[#9a7d45]/10 transition-all">
+                            <a href="https://www.instagram.com/fincalamasiaoficial/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-[#9a7d45]/30 flex items-center justify-center hover:border-[#9a7d45] hover:bg-[#9a7d45]/10 transition-all">
                                 <Instagram className="w-5 h-5 text-[#9a7d45]" />
                             </a>
                             <a href="#" className="w-10 h-10 border border-[#9a7d45]/30 flex items-center justify-center hover:border-[#9a7d45] hover:bg-[#9a7d45]/10 transition-all">
@@ -37,7 +37,7 @@ export function Footer() {
                         <ul className="space-y-4 font-serif italic">
                             <li className="flex items-start gap-4 text-white/80">
                                 <MapPin className="w-5 h-5 text-[#9a7d45] shrink-0" />
-                                <span>{t('hero.location')} <br /> Vereda Tres Puertas</span>
+                                <span>{t('hero.location')} <br /> {t('location.parcelacion')}</span>
                             </li>
                             <li className="flex items-center gap-4 text-white/80">
                                 <Phone className="w-5 h-5 text-[#9a7d45]" />

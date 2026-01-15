@@ -20,7 +20,7 @@ export default function PoliticasPage() {
                     </Link>
                     <div className="flex flex-col items-center">
                         <Trees className="w-5 h-5 text-[#9a7d45]" />
-                        <span className="text-lg italic tracking-tighter">La Juana</span>
+                        <span className="text-lg italic tracking-tighter">{t('common.brand_name')}</span>
                     </div>
                 </div>
             </nav>
@@ -71,7 +71,7 @@ export default function PoliticasPage() {
                 </div>
 
                 <div className="mt-24 pt-12 border-t border-[#9a7d45]/10 text-center text-slate-400 text-sm">
-                    <p>© 2026 La Juana cerro tusa. {t('footer.rights')}</p>
+                    <p>© 2026 {t('common.brand_name')}. {t('footer.rights')}</p>
                 </div>
             </div>
         </main>
